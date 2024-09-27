@@ -1,9 +1,9 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Template for AWS ElastiCache"
 Parameters:
-  #AutomaticFailoverEnabled: 
-    #Type: String
-    #Default: 'false'
+  AutomaticFailoverEnabled: 
+    Type: String
+    Default: 'false'
   CacheNodeType: 
     Type: String
     Default: cache.t2.medium
@@ -55,7 +55,7 @@ Resources:
     Type: AWS::ElastiCache::ReplicationGroup
     Properties: 
       ReplicationGroupDescription: Replication Group for Testing
-      #AutomaticFailoverEnabled: true
+      AutomaticFailoverEnabled: true
       PreferredMaintenanceWindow: "sun:12:00-sun:14:00"
       SnapshotRetentionLimit: 2
       SnapshotWindow: "08:00-10:00"
@@ -68,7 +68,7 @@ Resources:
       SecurityGroupIds: !If [HasSecurityGroups, !Split [",", !Ref RedisSecurityGroup] , !Ref "AWS::NoValue"]
       ReplicationGroupId: cluster-test-001
       ReplicasPerNodeGroup: !Ref ReplicasPerNodeGroup
-      AutomaticFailoverEnabled: false
+      AutomaticFailoverEnabled: !Ref AutomaticFailoverEnabled
       Tags:
         - Key: Name
           Value: cluster-test-001
