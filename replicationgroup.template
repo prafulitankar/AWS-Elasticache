@@ -55,7 +55,7 @@ Resources:
     Type: AWS::ElastiCache::ReplicationGroup
     Properties: 
       ReplicationGroupDescription: Replication Group for Testing
-      AutomaticFailoverEnabled: true
+      #AutomaticFailoverEnabled: true
       PreferredMaintenanceWindow: "sun:12:00-sun:14:00"
       SnapshotRetentionLimit: 2
       SnapshotWindow: "08:00-10:00"
